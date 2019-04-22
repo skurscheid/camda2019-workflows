@@ -1,0 +1,19 @@
+{
+    "__default__" :
+    {
+        "P" : "kv78",
+        "queue" : "normal",
+        "mem" : "2G",
+        "ncpus" : 4,
+        "std1_out_dir" : "/home/150/sxk150/qsub_output",
+        "error_out_dir" : "/home/150/sxk150/qsub_error"
+    },
+    "md5check" :
+    {
+        "queue" : "normal",
+        "mem" : "256M",
+        "ncpus" : 1,
+        "std1_out_dir" : "/home/150/sxk150/qsub_output",
+        "error_out_dir" : "/home/150/sxk150/qsub_error"
+    }
+}
