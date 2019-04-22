@@ -10,9 +10,11 @@
     },
     "md5check" :
     {
+        "P" : "kv78",
         "queue" : "normal",
         "mem" : "256M",
         "ncpus" : 1,
+        "walltime": "00:05:00",
         "std1_out_dir" : "/home/150/sxk150/qsub_output",
         "error_out_dir" : "/home/150/sxk150/qsub_error"
     }

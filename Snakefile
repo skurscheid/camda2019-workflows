@@ -4,9 +4,9 @@ report: "report/workflow.rst"
 # Allow users to fix the underlying OS via singularity.
 singularity: "docker://continuumio/miniconda3"
 
-kirc_dsrc, = glob_wildcards("camda-tcga-kirc/{ids}")
-luad_dsrc, = glob_wildcards("camda-tcga-luad/{ids}")
-brca_dsrc, = glob_wildcards("camda-tcga-brca/{ids}")
+kirc_dsrc, = glob_wildcards("camda-tcga-kirc/dsrc/{ids}")
+luad_dsrc, = glob_wildcards("camda-tcga-luad/dsrc/{ids}")
+brca_dsrc, = glob_wildcards("camda-tcga-brca/dsrc/{ids}")
 
 rule all_md5check_kirc:
     input:

@@ -2,9 +2,9 @@ rule md5check:
     threads:
         1
     benchmark:
-        "{dataset}/md5sum/benchmarks/{dsrc}_times.tsv"
+        "{dataset}/benchmarks/{dsrc}_md5sum_times.tsv"
     input:
-        file = "{dataset}/{dsrc}"
+        file = "{dataset}/dsrc/{dsrc}"
     output:
         md5sum = "{dataset}/md5sum/{dsrc}.md5"
     shell:
