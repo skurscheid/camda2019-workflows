@@ -1,3 +1,14 @@
+# The main entry point of your workflow.
+# After configuring, running snakemake -n in a clone of this repository should successfully execute a dry-run of the workflow.
+import pandas as pd
+import os
+from snakemake.utils import validate, min_version
+
+##### set minimum snakemake version #####
+#
+min_version("5.1.2")
+#
+
 #configfile: "config.yaml"
 report: "report/workflow.rst"
 
