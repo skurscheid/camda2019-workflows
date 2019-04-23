@@ -19,11 +19,11 @@ rule all_md5check_kirc:
 
 rule all_md5check_luad:
     input:
-        "camda-tcga-kirc/md5sums_LUAD_check.txt"
+        "camda-tcga-luad/md5sums_LUAD_check.txt"
 
 rule all_md5check_brca:
     input:
-        "camda-tcga-kirc/md5sums_BRCA_check.txt"
+        "camda-tcga-brca/md5sums_BRCA_check.txt"
 
 # second stage - presuming that all md5 checks are ok
 rule all_fastqProcessing_kirc:

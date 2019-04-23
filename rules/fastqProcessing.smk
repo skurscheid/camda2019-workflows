@@ -1,7 +1,6 @@
 rule decompress:
     conda:
         "../envs/fastqProcessing.yaml"
-    params:
     threads:
         2
     input:
@@ -13,7 +12,6 @@ rule decompress:
 
 
 rule fix_fastq_header_read1:
-    params:
     threads:
         2
     input:
@@ -21,10 +19,11 @@ rule fix_fastq_header_read1:
     output:
         pipe("{dataset}/pipes/{id}_1.fixed.fifo")
     shell:
-        "cat {input} | awk '{print (NR%4 == 1) ? $0 "/1" : $0}' | gzip -c > {ouput}"
+        """
+          cat {input} | awk '{print (NR%4 == 1) ? $0 "/1" : $0}' | gzip -c > {ouput}
+        """
 
 rule fix_fastq_header_read2:
-    params:
     threads:
         2
     input:
@@ -32,11 +31,11 @@ rule fix_fastq_header_read2:
     output:
         pipe("{dataset}/pipes/{id}_2.fixed.fifo")
     shell:
-        "cat {input} | awk '{print (NR%4 == 1) ? $0 "/2" : $0}' | gzip -c > {ouput}"
-
+        """
+          cat {input} | awk '{print (NR%4 == 1) ? $0 "/2" : $0}' | gzip -c > {ouput}
+        """
 
 rule qc_and_trim:
-    params:
     conda:
         "../envs/fastqProcessing.yaml"
     threads:
