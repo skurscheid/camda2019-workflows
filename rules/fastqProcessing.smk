@@ -50,3 +50,4 @@ rule qc_and_trim:
         json = "{dataset}/fastp_reports/{id}.json"
     shell:
         "fastp --in1 {input.read1} --in2 {input.read2} --out1 {output.read1} --out2 {output.read2} --detect_adapter_for_pe --json {output.json} --thread {threads}"
+

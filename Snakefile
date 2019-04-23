@@ -27,6 +27,7 @@ rule all_md5check_brca:
 
 # second stage - presuming that all md5 checks are ok
 rule all_fastqProcessing_kirc:
+    input:
         expand("camda-tcga-kirc/decompressed/{id}_{pe}.fastq.gz",
                id = kirc_dsrc_file_id,
                pe = ["1", "2"]),
@@ -34,6 +35,7 @@ rule all_fastqProcessing_kirc:
                id = kirc_dsrc_file_id)
 
 rule all_fastqProcessing_luad:
+    input:
         expand("camda-tcga-luad/decompressed/{id}_{pe}.fastq.gz",
                id = luad_dsrc_file_id,
                pe = ["1", "2"]),
@@ -41,6 +43,7 @@ rule all_fastqProcessing_luad:
                id = luad_dsrc_file_id)
 
 rule all_fastqProcessing_brca:
+    input:
         expand("camda-tcga-brca/decompressed/{id}_{pe}.fastq.gz",
                id = brca_dsrc_file_id,
                pe = ["1", "2"]),
