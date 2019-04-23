@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -P kv78
-#PBS -l walltime=00:19:00
+#PBS -l walltime=12:00:00
 #PBS -l wd
 #PBS -e /home/150/sxk150/qsub_error
 #PBS -o /home/150/sxk150/qsub_out
@@ -23,5 +23,5 @@ source ~/.bashrc
 	--rerun-incomplete \
         --local-cores 1\
 	--cluster-config /home/150/sxk150/camda2019-workflows/cluster.json\
-	-pr
+	-prn
 
