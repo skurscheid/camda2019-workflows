@@ -17,7 +17,7 @@ rule fix_fastq_header_read1:
     threads:
         3
     benchmark:
-        "{dataset}/benchmarks/fix_fastq_{id}_{pe}_times.tsv"
+        "{dataset}/benchmarks/fix_fastq_{id}_1_times.tsv"
     input:
         "{dataset}/pipe/{id}_1.fifo"
     output:
@@ -31,7 +31,7 @@ rule fix_fastq_header_read2:
     threads:
         3
     benchmark:
-        "{dataset}/benchmarks/fix_fastq_{id}_{pe}_times.tsv"
+        "{dataset}/benchmarks/fix_fastq_{id}_2_times.tsv"
     input:
         "{dataset}/pipe/{id}_2.fifo"
     output:
@@ -46,6 +46,8 @@ rule qc_and_trim:
         "../envs/fastqProcessing.yaml"
     threads:
         4
+    benchmark:
+        "{dataset}/benchmarks/qc_and_trim_{id}_times.tsv"
     input:
         read1 = "{dataset}/temp/{id}_1.fixed.fastq.gz",
         read2 = "{dataset}/temp/{id}_2.fixed.fastq.gz"
