@@ -1,3 +1,13 @@
+rule setup_fastqProcessing_env:
+    conda:
+        "../envs/fastqProcessing.yaml"
+    threads:
+       1
+    output:
+        "{dataset}/conda_dummy.txt"
+    shell:
+        "env > {output}"
+
 rule decompress:
     conda:
         "../envs/fastqProcessing.yaml"
@@ -6,6 +16,7 @@ rule decompress:
     threads:
         2
     input:
+        dummy = "{dataset}/conda_dummy.txt",
         file = "{dataset}/dsrc/{id}_{pe}.fastq.dsrc"
     output:
         pipe("{dataset}/pipe/{id}_{pe}.fifo")

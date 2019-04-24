@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -P kv78
-#PBS -l walltime=03:59:00
+#PBS -l walltime=24:00:00
 #PBS -l wd
 #PBS -e /home/150/sxk150/qsub_error
 #PBS -o /home/150/sxk150/qsub_out
@@ -8,7 +8,7 @@
 
 source ~/.bashrc
 
-/short/rl2/miniconda3/envs/snakemake/bin/snakemake -s /home/150/sxk150/camda2019-workflows/Snakefile all_md5check_kirc\
+/short/rl2/miniconda3/envs/snakemake/bin/snakemake -s /home/150/sxk150/camda2019-workflows/Snakefile all_md5check_brca\
 	--use-conda\
 	--cluster "qsub -P {cluster.P}\
                     -l ncpus={cluster.ncpus} \

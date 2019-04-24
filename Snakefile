@@ -23,6 +23,11 @@ kirc_dsrc_file_id, = glob_wildcards("camda-tcga-kirc/dsrc/{ids}_1.fastq.dsrc")
 luad_dsrc_file_id, = glob_wildcards("camda-tcga-luad/dsrc/{ids}_1.fastq.dsrc")
 brca_dsrc_file_id, = glob_wildcards("camda-tcga-brca/dsrc/{ids}_1.fastq.dsrc")
 
+
+# dummy rules for conda pre-install
+rule conda_setup:
+    input: "camda-tcga-kirc/conda_dummy.txt"
+
 # first stage
 rule all_md5check_kirc:
     input:

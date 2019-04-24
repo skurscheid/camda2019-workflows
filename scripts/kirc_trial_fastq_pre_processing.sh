@@ -27,5 +27,5 @@ source ~/.bashrc
 	--rerun-incomplete \
         --local-cores 1\
 	--cluster-config /home/150/sxk150/camda2019-workflows/cluster.json\
-	-prn
+	-pr
 
