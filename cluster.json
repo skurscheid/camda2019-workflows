@@ -6,7 +6,9 @@
         "mem" : "2G",
         "ncpus" : 4,
         "std1_out_dir" : "/home/150/sxk150/qsub_output",
-        "error_out_dir" : "/home/150/sxk150/qsub_error"
+        "error_out_dir" : "/home/150/sxk150/qsub_error",
+        "M" : "skurscheid@gmail.com",
+        "m" : "abe"
     },
     "md5check" :
     {
@@ -16,6 +18,56 @@
         "ncpus" : 1,
         "walltime": "10:00:00",
         "std1_out_dir" : "/home/150/sxk150/qsub_output",
-        "error_out_dir" : "/home/150/sxk150/qsub_error"
+        "error_out_dir" : "/home/150/sxk150/qsub_error",
+        "M" : "skurscheid@gmail.com",
+        "m" : "abe"
+    },
+    "decompress" : 
+    {
+        "P" : "kv78",
+        "queue" : "normal",
+        "mem" : "1024M",
+        "ncpus" : 2,
+        "walltime": "00:50:00",
+        "std1_out_dir" : "/short/kv78/qsub_out",
+        "error_out_dir" : "/short/kv78/qsub_err",
+        "M" : "skurscheid@gmail.com",
+        "m" : "abe"
+    },
+    "fix_fastq_header_read1" : 
+    {
+        "P" : "kv78",
+        "queue" : "normal",
+        "mem" : "1024M",
+        "ncpus" : 3,
+        "walltime": "00:50:00",
+        "std1_out_dir" : "/short/kv78/qsub_out",
+        "error_out_dir" : "/short/kv78/qsub_err",
+        "M" : "skurscheid@gmail.com",
+        "m" : "abe"
+    },
+    "fix_fastq_header_read2" :    
+    {
+        "P" : "kv78",
+        "queue" : "normal",
+        "mem" : "1024M",
+        "ncpus" : 3,
+        "walltime": "00:50:00",
+        "std1_out_dir" : "/short/kv78/qsub_out",
+        "error_out_dir" : "/short/kv78/qsub_err",
+        "M" : "skurscheid@gmail.com",
+        "m" : "abe"
+    },
+    "qc_and_trim" : 
+    {
+        "P" : "kv78",
+        "queue" : "normal",
+        "mem" : "2048",
+        "ncpus" : 4,
+        "walltime": "01:00:00",
+        "std1_out_dir" : "/short/kv78/qsub_out",
+        "error_out_dir" : "/short/kv78/qsub_err",
+        "M" : "skurscheid@gmail.com",
+        "m" : "abe"
     }
 }
