@@ -1,4 +1,6 @@
 rule setup_fastqProcessing_env:
+    group:
+        "A"
     conda:
         "../envs/fastqProcessing.yaml"
     threads:
@@ -9,6 +11,8 @@ rule setup_fastqProcessing_env:
         "env > {output}"
 
 rule decompress:
+    group:
+        "A"
     conda:
         "../envs/fastqProcessing.yaml"
     benchmark:
@@ -19,37 +23,40 @@ rule decompress:
         dummy = "{dataset}/conda_dummy.txt",
         file = "{dataset}/dsrc/{id}_{pe}.fastq.dsrc"
     output:
-        pipe("{dataset}/pipe/{id}_{pe}.fifo")
+        temp("{dataset}/temp/{id}_{pe}.fastq.gz")
     shell:
         "dsrc d -t{threads} {input.file} {output}"
 
-
 rule fix_fastq_header_read1:
+    group:
+        "A"
     threads:
         3
     benchmark:
         "{dataset}/benchmarks/fix_fastq_{id}_1_times.tsv"
     input:
-        "{dataset}/pipe/{id}_1.fifo"
+        "{dataset}/temp/{id}_1.fastq.gz"
     output:
         temp("{dataset}/temp/{id}_1.fixed.fastq.gz")
     shell:
         """
-          cat {input} | awk '{{print (NR%4 == 1) ? $0 "/1" : $0}}' | gzip -c > {output}
+          zcat {input} | awk \'{{print (NR%4 == 1) ? $0 \"/1\" : $0}}\' | gzip -c > {output}
         """
 
 rule fix_fastq_header_read2:
+    group:
+        "A"
     threads:
         3
     benchmark:
         "{dataset}/benchmarks/fix_fastq_{id}_2_times.tsv"
     input:
-        "{dataset}/pipe/{id}_2.fifo"
+        "{dataset}/temp/{id}_2.fastq.gz"
     output:
         temp("{dataset}/temp/{id}_2.fixed.fastq.gz")
     shell:
         """
-          cat {input} | awk '{{print (NR%4 == 1) ? $0 "/2" : $0}}' | gzip -c > {output}
+          zcat {input} | awk \'{{print (NR%4 == 1) ? $0 \"/2\" : $0}}\' | gzip -c > {output}
         """
 
 rule qc_and_trim:
