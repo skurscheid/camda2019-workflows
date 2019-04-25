@@ -22,7 +22,7 @@ source ~/.bashrc
                     -m {cluster.m}\
                     -e {cluster.error_out_dir} \
                     -o {cluster.std1_out_dir}" \
-	--jobs 32\
+	--jobs 100\
 	-d /short/kv78/\
 	--rerun-incomplete \
         --local-cores 1\

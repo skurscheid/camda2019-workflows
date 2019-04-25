@@ -27,25 +27,13 @@
     "decompress" : 
     {
         "mem" : "1024M",
-        "ncpus" : 2,
-        "walltime": "00:50:00",
-    },
-    "fix_fastq_header_read1" : 
-    {
-        "mem" : "1024M",
-        "ncpus" : 3,
-        "walltime": "00:50:00",
-    },
-    "fix_fastq_header_read2" :    
-    {
-        "mem" : "1024M",
-        "ncpus" : 3,
-        "walltime": "00:50:00",
+        "ncpus" : 4,
+        "walltime": "02:00:00",
     },
     "qc_and_trim" : 
     {
         "mem" : "2048",
-        "ncpus" : 4,
-        "walltime": "01:00:00",
+        "ncpus" : 8,
+        "walltime": "02:00:00",
     }
 }
