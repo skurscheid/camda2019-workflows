@@ -1,16 +1,5 @@
-rule setup_fastqProcessing_env:
-    group:
-        "A"
-    conda:
-        "../envs/fastqProcessing.yaml"
-    threads:
-       1
-    output:
-        "{dataset}/conda_dummy.txt"
-    shell:
-        "env > {output}"
-
 rule decompress:
+    """ decompresses dsrc compressed fastq files"""
     group:
         "A"
     conda:
@@ -20,10 +9,9 @@ rule decompress:
     threads:
         2
     input:
-        dummy = "{dataset}/conda_dummy.txt",
         file = "{dataset}/dsrc/{id}_{pe}.fastq.dsrc"
     output:
-        temp("{dataset}/temp/{id}_{pe}.fastq.gz")
+        pipe("{dataset}/temp/{id}_{pe}.fastq")
     shell:
         "dsrc d -t{threads} {input.file} {output}"
 
@@ -35,12 +23,12 @@ rule fix_fastq_header_read1:
     benchmark:
         "{dataset}/benchmarks/fix_fastq_{id}_1_times.tsv"
     input:
-        "{dataset}/temp/{id}_1.fastq.gz"
+        "{dataset}/temp/{id}_1.fastq"
     output:
         temp("{dataset}/temp/{id}_1.fixed.fastq.gz")
     shell:
         """
-          zcat {input} | awk '{{print (NR%4 == 1) ? $0 "/1" : $0}}' | gzip -c > {output}
+          cat {input} | awk '{{print (NR%4 == 1) ? $0 "/1" : $0}}' | gzip -c > {output}
         """
 
 rule fix_fastq_header_read2:
@@ -51,12 +39,12 @@ rule fix_fastq_header_read2:
     benchmark:
         "{dataset}/benchmarks/fix_fastq_{id}_2_times.tsv"
     input:
-        "{dataset}/temp/{id}_2.fastq.gz"
+        "{dataset}/temp/{id}_2.fastq"
     output:
         temp("{dataset}/temp/{id}_2.fixed.fastq.gz")
     shell:
         """
-          zcat {input} | awk '{{print (NR%4 == 1) ? $0 "/2" : $0}}' | gzip -c > {output}
+          cat {input} | awk '{{print (NR%4 == 1) ? $0 "/2" : $0}}' | gzip -c > {output}
         """
 
 rule qc_and_trim:
