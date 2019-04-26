@@ -56,13 +56,9 @@ kirc_trial_ids = ["00327c92-7745-4794-bef2-6174ba790253",
 		  "00c8f6ab-9678-4414-8799-5b8df3109018",
 		  "018462d8-3ccb-4c08-aef5-3d91540cc693",
 		  "018cdacc-dad1-406f-ae45-1c15be6c6a57",
-		  "018f6cc2-b8ba-4abf-826f-4cc2f7243412",
-		  "023ac154-d967-434f-b868-7083bd57d71b",
-		  "024da484-7267-4c31-8ac4-5e9a1c26ea69",
-		  "029475c1-7115-45fe-985c-f96857ad78af",
-		  "02b8bc07-b070-4b42-afab-3dcfc7aa1ab6",
 		  "02d17427-b107-4494-9eee-4e421a3a112a",
-		  "0322e00f-c1bd-45de-91f4-79140d960c87"]
+		  "0322e00f-c1bd-45de-91f4-79140d960c87",
+                  "cc200468-1a2a-445b-bd33-3f1f68b11d8b"]
 
 rule trial_fastqProcessing_kirc:
     input:

@@ -9,7 +9,6 @@
         "error_out_dir" : "/home/150/sxk150/qsub_error",
         "M" : "skurscheid@gmail.com",
         "m" : "abe",
-        "name" : "JOBNAME.{rule}.{wildcards}"
     },
     "md5check" :
     {
@@ -29,11 +28,13 @@
         "mem" : "1024M",
         "ncpus" : 4,
         "walltime": "02:00:00",
+        "name" : "{rule}.{wildcards.id}"
     },
     "qc_and_trim" : 
     {
-        "mem" : "2048",
-        "ncpus" : 8,
-        "walltime": "02:00:00",
+        "mem" : "2048M",
+        "ncpus" : 4,
+        "walltime": "01:00:00",
+        "name" : "{rule}.{wildcards.id}"
     }
 }

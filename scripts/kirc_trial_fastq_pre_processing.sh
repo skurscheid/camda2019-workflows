@@ -1,7 +1,8 @@
 #!/bin/bash
 #PBS -P kv78
-#PBS -l walltime=12:00:00
+#PBS -l walltime=02:00:00
 #PBS -l wd
+#PBS -q express
 #PBS -e /home/150/sxk150/qsub_error
 #PBS -o /home/150/sxk150/qsub_out
 #PBS -l ncpus=1
@@ -17,7 +18,7 @@ source ~/.bashrc
                     -q {cluster.queue} \
                     -l mem={cluster.mem} \
                     -l wd\
-                    -l walltime={cluster.walltime}
+                    -l walltime={cluster.walltime}\
                     -M {cluster.M}\
                     -m {cluster.m}\
                     -e {cluster.error_out_dir} \
