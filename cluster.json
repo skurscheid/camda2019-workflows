@@ -9,7 +9,6 @@
         "error_out_dir" : "/home/150/sxk150/qsub_error",
         "M" : "skurscheid@gmail.com",
         "m" : "abe",
-        "name" : "JOBNAME.{rule}.{wildcards}"
     },
     "md5check" :
     {
@@ -27,25 +26,15 @@
     "decompress" : 
     {
         "mem" : "1024M",
-        "ncpus" : 2,
-        "walltime": "00:50:00",
-    },
-    "fix_fastq_header_read1" : 
-    {
-        "mem" : "1024M",
-        "ncpus" : 3,
-        "walltime": "00:50:00",
-    },
-    "fix_fastq_header_read2" :    
-    {
-        "mem" : "1024M",
-        "ncpus" : 3,
-        "walltime": "00:50:00",
+        "ncpus" : 4,
+        "walltime": "02:00:00",
+        "name" : "{rule}.{wildcards.id}"
     },
     "qc_and_trim" : 
     {
-        "mem" : "2048",
+        "mem" : "2048M",
         "ncpus" : 4,
         "walltime": "01:00:00",
+        "name" : "{rule}.{wildcards.id}"
     }
 }
