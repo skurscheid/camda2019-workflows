@@ -8,7 +8,7 @@
 #PBS -M skurscheid@gmail.com
 #PBS -m abe
 #PBS -q express
-#PBS -N kirc_fastq_processing_master
+#PBS -N luad_fastq_processing_master
 
 source ~/.bashrc
 
