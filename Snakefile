@@ -60,6 +60,11 @@ kirc_trial_ids = ["00327c92-7745-4794-bef2-6174ba790253",
 		  "0322e00f-c1bd-45de-91f4-79140d960c87",
                   "cc200468-1a2a-445b-bd33-3f1f68b11d8b"]
 
+luad_trial_ids = ["00ac4e10-9bbe-4b6a-94d1-70c49dfffeb7",
+                  "00d9dd74-8bcf-4305-a126-49448a891f5c",
+                  "010a6f81-5601-4fd6-ad42-4d5670d48ff1",
+                  "017af027-2b49-4c66-afff-5833e5c8b370"]
+
 rule trial_fastqProcessing_kirc:
     input:
         expand("camda-tcga-kirc/decompressed/{id}_{pe}.fastq.gz",
@@ -67,6 +72,14 @@ rule trial_fastqProcessing_kirc:
                pe = ["1", "2"]),
         expand("camda-tcga-kirc/fastp_reports/{id}.json",
                id = kirc_trial_ids)
+
+rule trial_fastqProcessing_luad:
+    input:
+        expand("camda-tcga-luad/decompressed/{id}_{pe}.fastq.gz",
+               id = luad_trial_ids,
+               pe = ["1", "2"]),
+        expand("camda-tcga-luad/fastp_reports/{id}.json",
+               id = luad_trial_ids)
 
 rule all_fastqProcessing_luad:
     input:

@@ -27,14 +27,14 @@
     {
         "mem" : "1024M",
         "ncpus" : 4,
-        "walltime": "02:00:00",
+        "walltime": "01:00:00",
         "name" : "{rule}.{wildcards.id}"
     },
     "qc_and_trim" : 
     {
         "mem" : "2048M",
         "ncpus" : 4,
-        "walltime": "01:00:00",
+        "walltime": "00:30:00",
         "name" : "{rule}.{wildcards.id}"
     }
 }

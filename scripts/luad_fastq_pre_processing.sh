@@ -12,7 +12,7 @@
 
 source ~/.bashrc
 
-/short/rl2/miniconda3/envs/snakemake/bin/snakemake -s /home/150/sxk150/camda2019-workflows/Snakefile all_fastqProcessing_kirc\
+/short/rl2/miniconda3/envs/snakemake/bin/snakemake -s /home/150/sxk150/camda2019-workflows/Snakefile all_fastqProcessing_luad\
 	--use-conda\
 	--cluster "qsub -P {cluster.P}\
                     -l ncpus={cluster.ncpus}\
