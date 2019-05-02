@@ -1,13 +1,13 @@
 #!/bin/bash
 #PBS -P pb97
-#PBS -l walltime=24:00:00
+#PBS -l walltime=72:00:00
 #PBS -l wd
 #PBS -e /home/150/sxk150/qsub_error
 #PBS -o /home/150/sxk150/qsub_out
 #PBS -l ncpus=1
 #PBS -M skurscheid@gmail.com
 #PBS -m abe
-#PBS -q express
+#PBS -q biodev
 #PBS -N brca_fastq_processing_master
 
 source ~/.bashrc
@@ -29,4 +29,5 @@ source ~/.bashrc
 	-d /short/kv78/\
         --local-cores 1\
 	--cluster-config /home/150/sxk150/camda2019-workflows/cluster.json\
+        --keep-going\
 	-pr

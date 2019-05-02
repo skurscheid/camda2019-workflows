@@ -2,7 +2,7 @@
     "__default__" :
     {
         "P" : "pb97",
-        "queue" : "normal",
+        "queue" : "biodev",
         "mem" : "2G",
         "ncpus" : 4,
         "std1_out_dir" : "/home/150/sxk150/qsub_output",
