@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -P kv78
-#PBS -l walltime=00:20:00
+#PBS -l walltime=00:30:00
 #PBS -l wd
 #PBS -e /home/150/sxk150/qsub_error
 #PBS -o /home/150/sxk150/qsub_out
@@ -17,5 +17,5 @@ source ~/.bashrc
         --jobs 1\
         -d /short/kv78/\
         --local-cores 1\
-        -pr
+        -prn
 

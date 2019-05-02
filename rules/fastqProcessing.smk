@@ -16,6 +16,7 @@ rule decompress:
         """dsrc d -t{threads} -s {input.file} | awk '{{print (NR%4 == 1) ? $0 "/1" : $0}}' | gzip -c > {output} 2>{log}"""
 
 rule qc_and_trim:
+    """uses fastp to trim fastq reads and perform QC"""
     conda:
         "../envs/fastqProcessing.yaml"
     threads:
