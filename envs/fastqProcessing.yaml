@@ -12,6 +12,10 @@ dependencies:
   - certifi=2019.3.9
   - dsrc=2015.06.04
   - fastp=0.20.0
+  - fastqc=0.11.8
+  - font-ttf-dejavu-sans-mono=2.37
+  - fontconfig=2.13.1
+  - freetype=2.10.0
   - icu=58.2
   - jellyfish=2.2.10
   - jemalloc=5.2.0
@@ -20,11 +24,16 @@ dependencies:
   - libffi=3.2.1
   - libgcc-ng=8.2.0
   - libgfortran=3.0.0
+  - libiconv=1.15
   - liblapack=3.8.0
+  - libpng=1.6.37
   - libstdcxx-ng=8.2.0
+  - libuuid=2.32.1
+  - libxml2=2.9.9
   - ncurses=6.1
   - numpy=1.16.3
   - openblas=0.3.5
+  - openjdk=11.0.1
   - openssl=1.1.1b
   - perl=5.26.2
   - pip=19.0.3
