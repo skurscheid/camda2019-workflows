@@ -36,5 +36,12 @@
         "ncpus" : 4,
         "walltime": "00:30:00",
         "name" : "{rule}.{wildcards.id}"
+    },
+    "bowtie2_rRNA" :
+    {
+        "mem" : "16G",
+        "ncpus" : 8,
+        "walltime": "2:00:00",
+        "name" : "{rule}.{wildcards.id}"
     }
 }
