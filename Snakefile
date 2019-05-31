@@ -53,17 +53,29 @@ rule all_fastqProcessing_kirc:
 # trial run
 kirc_trial_ids = ["00327c92-7745-4794-bef2-6174ba790253",
                   "00946310-0f66-42a9-a373-aba13cfa87e9",
-		  "00c8f6ab-9678-4414-8799-5b8df3109018",
-		  "018462d8-3ccb-4c08-aef5-3d91540cc693",
-		  "018cdacc-dad1-406f-ae45-1c15be6c6a57",
-		  "02d17427-b107-4494-9eee-4e421a3a112a",
-		  "0322e00f-c1bd-45de-91f4-79140d960c87",
+                  "00c8f6ab-9678-4414-8799-5b8df3109018",
+                  "018462d8-3ccb-4c08-aef5-3d91540cc693",
+                  "018cdacc-dad1-406f-ae45-1c15be6c6a57",
+                  "02d17427-b107-4494-9eee-4e421a3a112a",
+                  "0322e00f-c1bd-45de-91f4-79140d960c87",
                   "cc200468-1a2a-445b-bd33-3f1f68b11d8b"]
 
 luad_trial_ids = ["00ac4e10-9bbe-4b6a-94d1-70c49dfffeb7",
                   "00d9dd74-8bcf-4305-a126-49448a891f5c",
                   "010a6f81-5601-4fd6-ad42-4d5670d48ff1",
                   "017af027-2b49-4c66-afff-5833e5c8b370"]
+
+
+rule trial_rRNAFilter_kirc:
+        expand("camda-tcga-kirc/rRNA_screen/{id}.bam",
+               id = kirc_trial_ids),
+        expand("camda-tcga-kirc/rRNA_screen/{id}.{suffix}",
+                id = kirc_trial_ids,
+                suffix = ["_metrics.txt",
+                          "_blacklist_paired_aligned.fq.gz",
+                          "_blacklist_paired_unaligned.fq.gz",
+                          "_blacklist_unpaired_aligned.fq.gz",
+                          "_blacklist_unpaired_unaligned.fq.gz"])
 
 rule trial_fastqProcessing_kirc:
     input:
@@ -81,6 +93,7 @@ rule trial_fastqProcessing_luad:
         expand("camda-tcga-luad/fastp_reports/{id}.json",
                id = luad_trial_ids)
 
+# full run targets
 rule all_fastqProcessing_luad:
     input:
         expand("camda-tcga-luad/decompressed/{id}_{pe}.fastq.gz",
@@ -99,3 +112,4 @@ rule all_fastqProcessing_brca:
 
 include: "rules/md5check.smk"
 include: "rules/fastqProcessing.smk"
+include: "rules/rRNAFilter.smk"
