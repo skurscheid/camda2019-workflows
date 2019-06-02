@@ -42,13 +42,13 @@ rule all_md5check_brca:
         "camda-tcga-brca/md5sums_BRCA_check.txt"
 
 # second stage - presuming that all md5 checks are ok
-rule all_fastqProcessing_kirc:
-    input:
-        expand("camda-tcga-kirc/decompressed/{id}_{pe}.fastq.gz",
-               id = kirc_dsrc_file_id,
-               pe = ["1", "2"]),
-        expand("camda-tcga-kirc/fastp_reports/{id}.json",
-               id = kirc_dsrc_file_id)
+#rule all_fastqProcessing_kirc:
+#    input:
+#        expand("camda-tcga-kirc/decompressed/{id}_{pe}.fastq.gz",
+#               id = kirc_dsrc_file_id,
+#               pe = ["1", "2"]),
+#        expand("camda-tcga-kirc/fastp_reports/{id}.json",
+#               id = kirc_dsrc_file_id)
 
 # trial run
 kirc_trial_ids = ["00946310-0f66-42a9-a373-aba13cfa87e9",
@@ -72,51 +72,52 @@ luad_trial_ids = ["00ac4e10-9bbe-4b6a-94d1-70c49dfffeb7",
                   "010a6f81-5601-4fd6-ad42-4d5670d48ff1",
                   "017af027-2b49-4c66-afff-5833e5c8b370"]
 
-
+# third stage actual RNA-Seq processing
 rule trial_rRNAFilter_kirc:
-        expand("camda-tcga-kirc/rRNA_screen/{id}.bam",
-               id = kirc_trial_ids),
-        expand("camda-tcga-kirc/rRNA_screen/{id}.{suffix}",
-                id = kirc_trial_ids,
-                suffix = ["_metrics.txt",
-                          "_blacklist_paired_aligned.fq.gz",
-                          "_blacklist_paired_unaligned.fq.gz",
-                          "_blacklist_unpaired_aligned.fq.gz",
-                          "_blacklist_unpaired_unaligned.fq.gz"])
+        input:
+            expand("camda-tcga-kirc/rRNA_screen/{id}.bam",
+                    id = kirc_trial_ids),
+            expand("camda-tcga-kirc/rRNA_screen/{id}.{suffix}",
+                    id = kirc_trial_ids,
+                    suffix = ["_metrics.txt",
+                              "_blacklist_paired_aligned.fq.gz",
+                              "_blacklist_paired_unaligned.fq.gz",
+                              "_blacklist_unpaired_aligned.fq.gz",
+                              "_blacklist_unpaired_unaligned.fq.gz"])
 
-rule trial_fastqProcessing_kirc:
-    input:
-        expand("camda-tcga-kirc/decompressed/{id}_{pe}.fastq.gz",
-               id = kirc_trial_ids,
-               pe = ["1", "2"]),
-        expand("camda-tcga-kirc/fastp_reports/{id}.json",
-               id = kirc_trial_ids)
-
-rule trial_fastqProcessing_luad:
-    input:
-        expand("camda-tcga-luad/decompressed/{id}_{pe}.fastq.gz",
-               id = luad_trial_ids,
-               pe = ["1", "2"]),
-        expand("camda-tcga-luad/fastp_reports/{id}.json",
-               id = luad_trial_ids)
+#rule trial_fastqProcessing_kirc:
+#    input:
+#        expand("camda-tcga-kirc/decompressed/{id}_{pe}.fastq.gz",
+#               id = kirc_trial_ids,
+#               pe = ["1", "2"]),
+#        expand("camda-tcga-kirc/fastp_reports/{id}.json",
+#               id = kirc_trial_ids)
+#
+#rule trial_fastqProcessing_luad:
+#    input:
+#        expand("camda-tcga-luad/decompressed/{id}_{pe}.fastq.gz",
+#               id = luad_trial_ids,
+#               pe = ["1", "2"]),
+#        expand("camda-tcga-luad/fastp_reports/{id}.json",
+#               id = luad_trial_ids)
 
 # full run targets
-rule all_fastqProcessing_luad:
-    input:
-        expand("camda-tcga-luad/decompressed/{id}_{pe}.fastq.gz",
-               id = luad_dsrc_file_id,
-               pe = ["1", "2"]),
-        expand("camda-tcga-luad/fastp_reports/{id}.json",
-               id = luad_dsrc_file_id)
-
-rule all_fastqProcessing_brca:
-    input:
-        expand("camda-tcga-brca/decompressed/{id}_{pe}.fastq.gz",
-               id = brca_dsrc_file_id,
-               pe = ["1", "2"]),
-        expand("camda-tcga-brca/fastp_reports/{id}.json",
-               id = brca_dsrc_file_id)
+#rule all_fastqProcessing_luad:
+#    input:
+#        expand("camda-tcga-luad/decompressed/{id}_{pe}.fastq.gz",
+#               id = luad_dsrc_file_id,
+#               pe = ["1", "2"]),
+#        expand("camda-tcga-luad/fastp_reports/{id}.json",
+#               id = luad_dsrc_file_id)
+#
+#rule all_fastqProcessing_brca:
+#    input:
+#        expand("camda-tcga-brca/decompressed/{id}_{pe}.fastq.gz",
+#               id = brca_dsrc_file_id,
+#               pe = ["1", "2"]),
+#        expand("camda-tcga-brca/fastp_reports/{id}.json",
+#               id = brca_dsrc_file_id)
 
 include: "rules/md5check.smk"
-include: "rules/fastqProcessing.smk"
+#include: "rules/fastqProcessing.smk"
 include: "rules/rRNAFilter.smk"
