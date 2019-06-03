@@ -21,8 +21,10 @@ brca_dsrc, = glob_wildcards("camda-tcga-brca/dsrc/{ids}")
 
 kirc_dsrc_file_id = pd.read_csv("kirc_ids.tsv", sep = "\t")
 kirc_dsrc_file_id = kirc_dsrc_file_id.iloc[:,0].tolist()
-luad_dsrc_file_id, = glob_wildcards("camda-tcga-luad/decompressed/{ids}_1.fastq.dsrc")
-brca_dsrc_file_id, = glob_wildcards("camda-tcga-brca/decompressed/{ids}_1.fastq.dsrc")
+luad_dsrc_file_id = pd.read_csv("luad_ids.tsv", sep = "\t") 
+luad_dsrc_file_id = luad_dsrc_file_id.iloc[:,0].tolist()
+brca_dsrc_file_id = pd.read_csv("brca_ids.tsv", sep = "\t") 
+brca_dsrc_file_id = brca_dsrc_file_id.iloc[:,0].tolist()
 
 
 # dummy rules for conda pre-install
@@ -68,11 +70,6 @@ kirc_trial_ids = ["00946310-0f66-42a9-a373-aba13cfa87e9",
                     "04bd5447-cefa-410e-bac8-f93cae48c4bf",
                     "04c5d16d-049f-4b54-991b-921264eb0fb4"]
 
-luad_trial_ids = ["00ac4e10-9bbe-4b6a-94d1-70c49dfffeb7",
-                  "00d9dd74-8bcf-4305-a126-49448a891f5c",
-                  "010a6f81-5601-4fd6-ad42-4d5670d48ff1",
-                  "017af027-2b49-4c66-afff-5833e5c8b370"]
-
 # third stage actual RNA-Seq processing
 rule trial_rRNAFilter_kirc:
         input:
@@ -84,6 +81,14 @@ rule all_rRNAFilter_kirc:
             expand("camda-tcga-kirc/rRNA_screen/{id}.bam",
                    id = kirc_dsrc_file_id)
 
+rule all_rRNAFilter_luad_brca:
+    input:
+        expand("camda-tcga-luad/rRNA_screen/{id}.{suffix}",
+                id = luad_dsrc_file_id,
+                suffix = ["bam"]),
+        expand("camda-tcga-brca/rRNA_screen/{id}.{suffix}",
+                id = brca_dsrc_file_id,
+                suffix = ["bam"])
 
 #rule trial_fastqProcessing_kirc:
 #    input:
