@@ -19,9 +19,10 @@ kirc_dsrc, = glob_wildcards("camda-tcga-kirc/dsrc/{ids}")
 luad_dsrc, = glob_wildcards("camda-tcga-luad/dsrc/{ids}")
 brca_dsrc, = glob_wildcards("camda-tcga-brca/dsrc/{ids}")
 
-kirc_dsrc_file_id, = glob_wildcards("camda-tcga-kirc/dsrc/{ids}_1.fastq.dsrc")
-luad_dsrc_file_id, = glob_wildcards("camda-tcga-luad/dsrc/{ids}_1.fastq.dsrc")
-brca_dsrc_file_id, = glob_wildcards("camda-tcga-brca/dsrc/{ids}_1.fastq.dsrc")
+kirc_dsrc_file_id = pd.read_csv("kirc_ids.tsv", sep = "\t")
+kirc_dsrc_file_id = kirc_dsrc_file_id.iloc[:,0].tolist()
+luad_dsrc_file_id, = glob_wildcards("camda-tcga-luad/decompressed/{ids}_1.fastq.dsrc")
+brca_dsrc_file_id, = glob_wildcards("camda-tcga-brca/decompressed/{ids}_1.fastq.dsrc")
 
 
 # dummy rules for conda pre-install
@@ -76,14 +77,13 @@ luad_trial_ids = ["00ac4e10-9bbe-4b6a-94d1-70c49dfffeb7",
 rule trial_rRNAFilter_kirc:
         input:
             expand("camda-tcga-kirc/rRNA_screen/{id}.bam",
-                    id = kirc_trial_ids),
-            expand("camda-tcga-kirc/rRNA_screen/{id}.{suffix}",
-                    id = kirc_trial_ids,
-                    suffix = ["_metrics.txt",
-                              "_blacklist_paired_aligned.fq.gz",
-                              "_blacklist_paired_unaligned.fq.gz",
-                              "_blacklist_unpaired_aligned.fq.gz",
-                              "_blacklist_unpaired_unaligned.fq.gz"])
+                    id = kirc_trial_ids)
+
+rule all_rRNAFilter_kirc:
+        input:
+            expand("camda-tcga-kirc/rRNA_screen/{id}.bam",
+                   id = kirc_dsrc_file_id)
+
 
 #rule trial_fastqProcessing_kirc:
 #    input:

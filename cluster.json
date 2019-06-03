@@ -39,6 +39,8 @@
     },
     "bowtie2_rRNA" :
     {
+        "P" : "kv78",
+        "queue" : "express",
         "mem" : "32G",
         "ncpus" : 16,
         "walltime": "4:00:00",
