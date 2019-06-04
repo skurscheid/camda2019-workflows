@@ -25,8 +25,8 @@ rule bowtie2_rRNA:
         blacklist_unpaired_dir = directory("{dataset}/rRNA_screen/{id}_blacklist_unpaired/")
     shell:
         """
-            if [ ! -d {output.blacklist_paired_dir} ]; mkdir {outdir.blacklist_paired_dir}; fi &&\
-            if [ ! -d {output.blacklist_unpaired_dir} ]; mkdir {outdir.blacklist_unpaired_dir}; fi &&\
+            if [ ! -d {output.blacklist_paired_dir} ]; then mkdir -p {output.blacklist_paired_dir}; fi &&\
+            if [ ! -d {output.blacklist_unpaired_dir} ]; then mkdir -p {output.blacklist_unpaired_dir}; fi &&\
             bowtie2 --quiet --very-sensitive-local -x {params.index} -1 {input.read1} -2 {input.read2}\
                     --threads {threads}\
                     --met-file {params.metrics}\

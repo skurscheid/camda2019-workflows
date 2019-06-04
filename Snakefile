@@ -83,12 +83,17 @@ rule all_rRNAFilter_kirc:
 
 rule all_rRNAFilter_luad_brca:
     input:
-        expand("camda-tcga-luad/rRNA_screen/{id}.{suffix}",
+        expand("camda-tcga-luad/rRNA_screen/{id}.bam",
+                id = luad_dsrc_file_id),
+        expand("camda-tcga-luad/rRNA_screen/{id}_{suffix}/",
                 id = luad_dsrc_file_id,
-                suffix = ["bam"]),
+                suffix = ["blacklist_paired", "blacklist_unpaired"]),
         expand("camda-tcga-brca/rRNA_screen/{id}.{suffix}",
                 id = brca_dsrc_file_id,
-                suffix = ["bam"])
+                suffix = ["bam"]),
+        expand("camda-tcga-brca/rRNA_screen/{id}_{suffix}/",
+                id = brca_dsrc_file_id,
+                suffix = ["blacklist_paired", "blacklist_unpaired"]),
 
 #rule trial_fastqProcessing_kirc:
 #    input:
