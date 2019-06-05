@@ -36,5 +36,14 @@
         "ncpus" : 4,
         "walltime": "00:30:00",
         "name" : "{rule}.{wildcards.id}"
+    },
+    "bowtie2_rRNA" :
+    {
+        "P" : "pb97",
+        "queue" : "biodev",
+        "mem" : "32G",
+        "ncpus" : 16,
+        "walltime": "4:00:00",
+        "name" : "{rule}.{wildcards.id}"
     }
 }

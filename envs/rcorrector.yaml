@@ -1,0 +1,13 @@
+name: rcorrector
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - jellyfish=2.2.10
+  - jemalloc=5.2.0
+  - libgcc-ng=8.2.0
+  - libstdcxx-ng=8.2.0
+  - perl=5.26.2
+  - rcorrector=1.0.3.1
+  - zlib=1.2.11
