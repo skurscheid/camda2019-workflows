@@ -1,8 +1,8 @@
 #!/bin/bash
-#PBS -P kv78
-#PBS -l walltime=24:00:00
+#PBS -P pb97
+#PBS -l walltime=144:00:00
 #PBS -l wd
-#PBS -q express
+#PBS -q biodev
 #PBS -e /home/150/sxk150/qsub_error
 #PBS -o /home/150/sxk150/qsub_out
 #PBS -l ncpus=1
@@ -30,5 +30,5 @@ source ~/.bashrc
     --local-cores 1\
 	--cluster-config /home/150/sxk150/camda2019-workflows/cluster.json\
     --keep-going\
-	-pr
+	-pr 
 
