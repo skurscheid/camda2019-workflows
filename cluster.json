@@ -9,7 +9,8 @@
         "error_out_dir" : "/home/150/sxk150/qsub_error",
         "M" : "skurscheid@gmail.com",
         "storage" : "scratch/kv78",
-        "m" : "abe"
+        "m" : "abe",
+	"jobfs" : "256GB"
     },
     "md5check" :
     {
