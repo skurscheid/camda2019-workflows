@@ -6,4 +6,4 @@
 params:
   bowtie2:
     index:
-      rRNA : "/short/kv78/References/Databases/SILVA/SILVA_132_CombinedParc_tax_silva"
+      rRNA : "/scratch/kv78/References/Databases/SILVA/SILVA_132_CombinedParc_tax_silva"

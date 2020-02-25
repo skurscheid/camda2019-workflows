@@ -1,14 +1,15 @@
 {
     "__default__" :
     {
-        "P" : "pb97",
+        "P" : "gp60",
         "queue" : "biodev",
         "mem" : "2G",
         "ncpus" : 4,
         "std1_out_dir" : "/home/150/sxk150/qsub_output",
         "error_out_dir" : "/home/150/sxk150/qsub_error",
         "M" : "skurscheid@gmail.com",
-        "m" : "abe",
+        "storage" : "scratch/kv78",
+        "m" : "abe"
     },
     "md5check" :
     {
@@ -39,8 +40,8 @@
     },
     "bowtie2_rRNA" :
     {
-        "P" : "pb97",
-        "queue" : "biodev",
+        "P" : "gp60",
+        "queue" : "express"
         "mem" : "32G",
         "ncpus" : 16,
         "walltime": "4:00:00",
