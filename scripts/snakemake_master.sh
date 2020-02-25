@@ -2,7 +2,7 @@
 #PBS -P gp60
 #PBS -l walltime=12:00:00
 #PBS -l wd
-#PBS -q express
+#PBS -q normal
 #PBS -e /home/150/sxk150/qsub_error
 #PBS -o /home/150/sxk150/qsub_out
 #PBS -l ncpus=1
