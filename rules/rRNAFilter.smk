@@ -1,3 +1,17 @@
+__author__ = "Sebastian Kurscheid (sebastian.kurscheid@anu.edu.au)"
+__license__ = "MIT"
+__date__ = "2019-05-01"
+
+# vim: syntax=python tabstop=4 expandtab
+# coding: utf-8
+
+"""
+Rules for aligning reads with bowtie2 against a synthetic rRNA reference index
+(https://github.com/BenLangmead/bowtie2)
+
+For usage, include this in your workflow.
+"""
+
 rule bowtie2_rRNA: 
     version:
         1

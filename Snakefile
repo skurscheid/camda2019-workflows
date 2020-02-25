@@ -4,6 +4,9 @@ import pandas as pd
 import os
 from snakemake.utils import validate, min_version
 
+# vim: syntax=python tabstop=4 expandtab
+# coding: utf-8
+
 ##### set minimum snakemake version #####
 #
 min_version("5.1.2")
