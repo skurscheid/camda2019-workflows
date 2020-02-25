@@ -76,8 +76,9 @@ kirc_trial_ids = ["00946310-0f66-42a9-a373-aba13cfa87e9",
 # third stage actual RNA-Seq processing
 rule trial_rRNAFilter_kirc:
         input:
-            expand("kirc/rRNA_screen/{id}.bam",
-                    id = kirc_trial_ids)
+            expand("kirc/rRNA_screen/{id}_blacklist_{pe}/",
+                    pe = ["paired", "unpaired"],
+                    id = kirc_trial_ids),
 
 rule all_rRNAFilter_kirc:
         input:
