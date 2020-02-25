@@ -34,5 +34,6 @@ rule bowtie2_rRNA:
                     --un-conc-gz {params.unconcgz}\
                     --al-gz {params.algz}\
                     --un-gz {params.ungz}\
-                    | samtools view -Sb - > {output.bam} 2>{log}
+                    2>>{log}\
+                    | samtools view -Sb - > {output.bam}
         """
