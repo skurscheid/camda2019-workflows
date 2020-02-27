@@ -1,8 +1,0 @@
-name: rcorrector
-channels:
-  - conda-forge
-  - bioconda
-  - defaults
-dependencies:
-  - kmer-jellyfish=2.3.0
-  - rcorrector=1.0.4
