@@ -28,19 +28,7 @@ rule run_Rcorrector:
         read1 = "{dataset}/decompressed/{id}_1.fastq.gz",
         read2 = "{dataset}/decompressed/{id}_2.fastq.gz",
     output:
-        bam = temp("{dataset}/rRNA_screen/{id}.bam"),
-        blacklist_paired_dir = directory("{dataset}/rRNA_screen/{id}_blacklist_paired/"),
-        blacklist_unpaired_dir = directory("{dataset}/rRNA_screen/{id}_blacklist_unpaired/")
     shell:
         """
-            if [ ! -d {output.blacklist_paired_dir} ]; then mkdir -p {output.blacklist_paired_dir}; fi &&\
-            if [ ! -d {output.blacklist_unpaired_dir} ]; then mkdir -p {output.blacklist_unpaired_dir}; fi &&\
-            bowtie2 --very-sensitive-local -x {params.index} -1 {input.read1} -2 {input.read2}\
-                    --threads {threads}\
-                    --al-conc-gz {params.alconcgz}\
-                    --un-conc-gz {output.blacklist_paired_dir}/{wildcards.id}_unaligned.fq.gz\
-                    --al-gz {params.algz}\
-                    --un-gz {output.blacklist_unpaired_dir}/{wildcards.id}_unaligned.fq.gz\
-                    2>>{log}\
-                    | samtools view -Sb - > {output.bam}
+
         """
