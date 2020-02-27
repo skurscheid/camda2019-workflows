@@ -1,27 +1,29 @@
 {
     "__default__" :
     {
-        "P" : "pb97",
-        "queue" : "biodev",
+        "P" : "gp60",
+        "queue" : "normal",
         "mem" : "2G",
         "ncpus" : 4,
         "std1_out_dir" : "/home/150/sxk150/qsub_output",
         "error_out_dir" : "/home/150/sxk150/qsub_error",
         "M" : "skurscheid@gmail.com",
+        "storage" : "scratch/kv78",
         "m" : "abe",
+	"jobfs" : "256GB"
     },
     "md5check" :
     {
         "mem" : "1024M",
         "ncpus" : 1,
-        "walltime": "23:59:00",
+        "walltime": "23:59:00"
     },
     "conda_setup":
     {
         "queue" : "copyq",
         "mem" : "1024M",
         "ncpus" : 1,
-        "walltime": "00:30:00",
+        "walltime": "00:30:00"
     },
     "decompress" : 
     {
@@ -39,8 +41,7 @@
     },
     "bowtie2_rRNA" :
     {
-        "P" : "pb97",
-        "queue" : "biodev",
+        "P" : "gp60",
         "mem" : "32G",
         "ncpus" : 16,
         "walltime": "4:00:00",

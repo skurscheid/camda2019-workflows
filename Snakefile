@@ -4,6 +4,9 @@ import pandas as pd
 import os
 from snakemake.utils import validate, min_version
 
+# vim: syntax=python tabstop=4 expandtab
+# coding: utf-8
+
 ##### set minimum snakemake version #####
 #
 min_version("5.1.2")
@@ -15,9 +18,9 @@ report: "report/workflow.rst"
 # Allow users to fix the underlying OS via singularity.
 singularity: "docker://continuumio/miniconda3"
 
-kirc_dsrc, = glob_wildcards("camda-tcga-kirc/dsrc/{ids}")
-luad_dsrc, = glob_wildcards("camda-tcga-luad/dsrc/{ids}")
-brca_dsrc, = glob_wildcards("camda-tcga-brca/dsrc/{ids}")
+kirc_dsrc, = glob_wildcards("kirc/dsrc/{ids}")
+luad_dsrc, = glob_wildcards("luad/dsrc/{ids}")
+brca_dsrc, = glob_wildcards("brca/dsrc/{ids}")
 
 kirc_dsrc_file_id = pd.read_csv("kirc_ids.tsv", sep = "\t")
 kirc_dsrc_file_id = kirc_dsrc_file_id.iloc[:,0].tolist()
@@ -29,20 +32,20 @@ brca_dsrc_file_id = brca_dsrc_file_id.iloc[:,0].tolist()
 
 # dummy rules for conda pre-install
 rule conda_setup:
-    input: "camda-tcga-kirc/conda_dummy.txt"
+    input: "kirc/conda_dummy.txt"
 
 # first stage
 rule all_md5check_kirc:
     input:
-        "camda-tcga-kirc/md5sums_KIRC_check.txt"
+        "kirc/md5sums_KIRC_check.txt"
 
 rule all_md5check_luad:
     input:
-        "camda-tcga-luad/md5sums_LUAD_check.txt"
+        "luad/md5sums_LUAD_check.txt"
 
 rule all_md5check_brca:
     input:
-        "camda-tcga-brca/md5sums_BRCA_check.txt"
+        "brca/md5sums_BRCA_check.txt"
 
 # second stage - presuming that all md5 checks are ok
 #rule all_fastqProcessing_kirc:
@@ -73,27 +76,23 @@ kirc_trial_ids = ["00946310-0f66-42a9-a373-aba13cfa87e9",
 # third stage actual RNA-Seq processing
 rule trial_rRNAFilter_kirc:
         input:
-            expand("camda-tcga-kirc/rRNA_screen/{id}.bam",
-                    id = kirc_trial_ids)
+            expand("kirc/rRNA_screen/{id}_blacklist_{pe}/",
+                    pe = ["paired", "unpaired"],
+                    id = kirc_trial_ids),
 
 rule all_rRNAFilter_kirc:
         input:
-            expand("camda-tcga-kirc/rRNA_screen/{id}.bam",
+            expand("kirc/rRNA_screen/{id}.bam",
                    id = kirc_dsrc_file_id)
 
 rule all_rRNAFilter_luad_brca:
     input:
-        expand("camda-tcga-luad/rRNA_screen/{id}.bam",
-                id = luad_dsrc_file_id),
-        expand("camda-tcga-luad/rRNA_screen/{id}_{suffix}/",
+        expand("luad/rRNA_screen/{id}.{suffix}",
                 id = luad_dsrc_file_id,
-                suffix = ["blacklist_paired", "blacklist_unpaired"]),
-        expand("camda-tcga-brca/rRNA_screen/{id}.{suffix}",
-                id = brca_dsrc_file_id,
                 suffix = ["bam"]),
-        expand("camda-tcga-brca/rRNA_screen/{id}_{suffix}/",
+        expand("brca/rRNA_screen/{id}.{suffix}",
                 id = brca_dsrc_file_id,
-                suffix = ["blacklist_paired", "blacklist_unpaired"]),
+                suffix = ["bam"])
 
 #rule trial_fastqProcessing_kirc:
 #    input:
