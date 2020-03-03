@@ -138,3 +138,4 @@ rule all_get_brca_failed_md5sum:
 include: "rules/md5check.smk"
 #include: "rules/fastqProcessing.smk"
 include: "rules/rRNAFilter.smk"
+include: "rules/sftp.smk"

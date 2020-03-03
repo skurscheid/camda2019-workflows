@@ -17,9 +17,12 @@ from snakemake.remote.SFTP import RemoteProvider
 SFTP = RemoteProvider(username="camda2019", password="MassiveData0724")
 
 rule get_single_files_via_sftp:
-    params:
+    threads:
+        1
     input: 
         SFTP.remote("igenomed.stanford.edu/Users/camda2019/CAMDA/{dataset}/{file_id}.fastq.dsrc")
     output:
         "{dataset}/dsrc/{file_id}.fastq.dsrc"
+    shell:
+        "cp {input} {output}"
 

@@ -49,6 +49,7 @@
     },
     "get_single_files_via_sftp" :
     {
+        "queue" : "copyq",
         "P" : "gp60",
         "mem" : "2GBM",
         "ncpus" : 1,
