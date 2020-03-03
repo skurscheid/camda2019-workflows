@@ -12,6 +12,9 @@ from snakemake.utils import validate, min_version
 min_version("5.1.2")
 #
 
+##### load additional functions #####
+include: "scripts/helper.py"
+
 #configfile: "config.yaml"
 report: "report/workflow.rst"
 
@@ -32,20 +35,20 @@ brca_dsrc_file_id = brca_dsrc_file_id.iloc[:,0].tolist()
 
 # dummy rules for conda pre-install
 rule conda_setup:
-    input: "kirc/conda_dummy.txt"
+    input: "KIRC/conda_dummy.txt"
 
 # first stage
 rule all_md5check_kirc:
     input:
-        "kirc/md5sums_KIRC_check.txt"
+        "KIRC/md5sums_KIRC_check.txt"
 
 rule all_md5check_luad:
     input:
-        "luad/md5sums_LUAD_check.txt"
+        "LUAD/md5sums_LUAD_check.txt"
 
 rule all_md5check_brca:
     input:
-        "brca/md5sums_BRCA_check.txt"
+        "BRCA/md5sums_BRCA_check.txt"
 
 # second stage - presuming that all md5 checks are ok
 #rule all_fastqProcessing_kirc:
@@ -76,23 +79,28 @@ kirc_trial_ids = ["00946310-0f66-42a9-a373-aba13cfa87e9",
 # third stage actual RNA-Seq processing
 rule trial_rRNAFilter_kirc:
         input:
-            expand("kirc/rRNA_screen/{id}_blacklist_{pe}/",
+            expand("KIRC/rRNA_screen/{id}_blacklist_{pe}/",
                     pe = ["paired", "unpaired"],
                     id = kirc_trial_ids),
 
 rule all_rRNAFilter_kirc:
         input:
-            expand("kirc/rRNA_screen/{id}.bam",
+            expand("KIRC/rRNA_screen/{id}.bam",
                    id = kirc_dsrc_file_id)
 
 rule all_rRNAFilter_luad_brca:
     input:
-        expand("luad/rRNA_screen/{id}.{suffix}",
+        expand("LUAD/rRNA_screen/{id}.{suffix}",
                 id = luad_dsrc_file_id,
                 suffix = ["bam"]),
-        expand("brca/rRNA_screen/{id}.{suffix}",
+        expand("BRCA/rRNA_screen/{id}.{suffix}",
                 id = brca_dsrc_file_id,
                 suffix = ["bam"])
+
+rule all_get_brca_failed_md5sum:
+    input:
+        expand("BRCA/dsrc/{id}.fastq.dsrc",
+               id = get_failed_ids("BRCA/failed.txt"))
 
 #rule trial_fastqProcessing_kirc:
 #    input:

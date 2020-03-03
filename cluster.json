@@ -46,5 +46,12 @@
         "ncpus" : 16,
         "walltime": "4:00:00",
         "name" : "{rule}.{wildcards.id}"
+    },
+    "get_single_files_via_sftp" :
+    {
+        "P" : "gp60",
+        "mem" : "2GBM",
+        "ncpus" : 1,
+        "walltime": "24:00:00"
     }
 }
