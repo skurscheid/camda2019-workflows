@@ -12,17 +12,18 @@ and http://contest.camda.info/
 For usage, include this in your workflow.
 """
 
-from snakemake.remote.SFTP import RemoteProvider
 
 SFTP = RemoteProvider(username="camda2019", password="MassiveData0724")
 
 rule get_single_files_via_sftp:
     threads:
         1
+    params:
+        username="camda2019", password="MassiveData0724"
     input: 
-        SFTP.remote("igenomed.stanford.edu/Users/camda2019/CAMDA/{dataset}/{file_id}.fastq.dsrc")
+        ...
     output:
         "{dataset}/dsrc/{file_id}.fastq.dsrc"
     shell:
-        "cp {input} {output}"
+        "lftp sftp://{params.username}:{params.password}@igenomed.stanford.edu -e \"pget -c /Users/camda2019/CAMDA/{wildcards.dataset}/{wildcards.file_id}.fastq.dsrc -o {output}; bye\""
 
