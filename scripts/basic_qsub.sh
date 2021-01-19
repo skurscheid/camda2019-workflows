@@ -1,4 +1,4 @@
-i#!/bin/bash
+#!/bin/bash
 #PBS -P kv78
 #PBS -l walltime=24:00:00
 #PBS -l wd
